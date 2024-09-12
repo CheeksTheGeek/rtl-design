@@ -1,0 +1,74 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "verify and/or create build directory",
+            "type": "shell",
+            "command": "mkdir -p build",
+            "group": "build",
+            "problemMatcher": [],
+            "runOptions": {
+                "runOn": "default",
+                "instanceLimit": 1
+            }
+
+        },
+        {
+            "label": "iverilog",
+            "type": "shell",
+            "command": "iverilog",
+            "args": [
+                "-g2012",
+                "-Y.sv",
+                "-y.",
+                "-I.",
+                "-o",
+                "build/{{fileBasename}}.v.out",
+                "${file}"
+            ],
+            "group": "build",
+            "problemMatcher": [],
+            "dependsOn": "verify and/or create build directory",
+            "runOptions": {
+                "runOn": "default",
+                "instanceLimit": 1
+            }
+        },
+        {
+            "label": "vvp",
+            "type": "shell",
+            "command": "vvp",
+            "args": [
+                "-l",
+                "build/vvp_output.log",
+                "build/{{fileBasename}}.v.out"
+            ],
+            "group": "build",
+            "problemMatcher": [],
+            "dependsOn": "iverilog",
+            "runOptions": {
+                "runOn": "default",
+                "instanceLimit": 1
+            }
+        },
+
+        {
+            "label": "gtkwave",
+            "type": "shell",
+            "command": "gtkwave",
+            "args": [
+                "${fileBasenameNoExtension}.vcd"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": [],
+            "dependsOn": "vvp",
+            "runOptions": {
+                "runOn": "default",
+                "instanceLimit": 1
+            }
+        },
+    ]
+}
