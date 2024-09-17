@@ -123,10 +123,10 @@ module top_module ();
     wire [32*3-1:0] array_out_32bit3;
     wire [4*5-1:0] array_out_4bit5;
 
-    initial begin
-        $dumpfile("top_module.vcd");
-        $dumpvars(0, top_module);
-    end
+    // initial begin
+    //     $dumpfile("top_module.vcd");
+    //     $dumpvars(0, top_module);
+    // end
     
 
     // SORTING ENGINE INSTANCES

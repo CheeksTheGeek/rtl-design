@@ -1,5 +1,5 @@
 # Project name variable
-PROJECT = project-name
+PROJECT = odd-even-transposition-sorter
 
 # Directories
 SRC_DIR = src
