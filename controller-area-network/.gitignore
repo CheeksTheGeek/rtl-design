@@ -1,0 +1,5 @@
+build/*
+dump/*
+*.vcd
+config/.gitkeep
+.DS_Store
